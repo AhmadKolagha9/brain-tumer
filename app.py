@@ -12,7 +12,7 @@ app = Flask(__name__)
 model = load_model('Brian_Tumor10Epochs.h5')
 print('Model loaded. Check http://127.0.0.1:5000/')
 
-
+server = "https://brain-tumer-ka.herokuapp.com"
 def get_className(classNo):
     if classNo == 0:
         return "No Brain Tumor"
@@ -30,12 +30,12 @@ def getResult(img):
     return predictions
 
 
-@app.route('/', methods=['GET'])
+@app.route(server+'/', methods=['GET'])
 def index():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['GET', 'POST'])
+@app.route('server+/predict', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
         f = request.files['file']
